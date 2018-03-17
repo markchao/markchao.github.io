@@ -107,7 +107,7 @@
 <meta property="og:description" content="二叉树定义 二叉树（Binary Tree）是n（n≥0）个结点的有限集合，该集合或者为空集（称为空二叉树），或者由一个根结点和两棵互不相交的、分别称为根结点的左子树和右子树的二叉树组成。 二叉树特点：1.每个结点最多有两棵子树，所以二叉树中不存在度大于2的结点。没有子树或者有一棵子树是可以的，最多有两棵子树。2.左子树和右子树是有顺序的，次序不能颠倒。3.即使树中某结点只有一棵子树，也要区分它是">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://xingkonghai.github.io/2018/03/17/学习二叉树/hhs.JPEG">
-<meta property="og:updated_time" content="2018-03-17T09:21:12.386Z">
+<meta property="og:updated_time" content="2018-03-17T09:58:43.176Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="学习二叉树">
 <meta name="twitter:description" content="二叉树定义 二叉树（Binary Tree）是n（n≥0）个结点的有限集合，该集合或者为空集（称为空二叉树），或者由一个根结点和两棵互不相交的、分别称为根结点的左子树和右子树的二叉树组成。 二叉树特点：1.每个结点最多有两棵子树，所以二叉树中不存在度大于2的结点。没有子树或者有一棵子树是可以的，最多有两棵子树。2.左子树和右子树是有顺序的，次序不能颠倒。3.即使树中某结点只有一棵子树，也要区分它是">
@@ -428,7 +428,7 @@
 3. 每个叶节点（NIL节点，空节点）是黑色的
 4. 每个红色节点的两个子节点都是黑色。(从每个叶子到根的所有路径上不能有两个连续的红色节点)
 5. 从任一节点到其每个叶子的所有路径都包含相同数目的黑色节点
-</code></pre><p>   <strong>红黑树</strong>根节点是黑色的每个叶结点（叶结点即指树尾端NIL指针或NULL结点）都是黑的。如果一个结点是红的，那么它的两个儿子都是黑的。对于任意结点而言，其到叶结点树尾端NIL指针的每条路径都包含相同数目的黑结点<br>   <img src="hhs.JPEG" alt="hhs"><br>   这里的NIL就是叶节点。有时候我们也称之为NULL节点，它只是指针而已<br>   或者说成：每个叶子结点都带有两个空的黑色结点（被称为黑哨兵），如果一个结点n的只有一个左孩子，那么n的右孩子是一个黑哨兵；如果结点n只有一个右孩子，那么n的左孩子是一个黑哨兵。<br>   一句话总结就是：有红必有黑，但有黑未必有红。小编是依据红黑树这个名字来记的。既然是红黑，自然有红就一定有黑。</p>
+</code></pre><p>   <strong>红黑树</strong>根节点是黑色的每个叶结点（叶结点即指树尾端NIL指针或NULL结点）都是黑的。如果一个结点是红的，那么它的两个儿子都是黑的。对于任意结点而言，其到叶结点树尾端NIL指针的每条路径都包含相同数目的黑结点<br>   <img src="/2018/03/17/学习二叉树/hhs.JPEG" alt="hhs"><br>   这里的NIL就是叶节点。有时候我们也称之为NULL节点，它只是指针而已<br>   或者说成：每个叶子结点都带有两个空的黑色结点（被称为黑哨兵），如果一个结点n的只有一个左孩子，那么n的右孩子是一个黑哨兵；如果结点n只有一个右孩子，那么n的左孩子是一个黑哨兵。<br>   一句话总结就是：有红必有黑，但有黑未必有红。小编是依据红黑树这个名字来记的。既然是红黑，自然有红就一定有黑。</p>
 <ul>
 <li>参考：<br>  <a href="http://blog.csdn.net/dengpei187/article/details/51890339" target="_blank" rel="noopener">http://blog.csdn.net/dengpei187/article/details/51890339</a><br>  <a href="https://baijiahao.baidu.com/s?id=1561409115312135&amp;wfr=spider&amp;for=pc" target="_blank" rel="noopener">https://baijiahao.baidu.com/s?id=1561409115312135&amp;wfr=spider&amp;for=pc</a></li>
 </ul>
