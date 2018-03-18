@@ -99,18 +99,18 @@
 
 
 
-  <meta name="description" content="####二叉树的遍历分为以下三种：  先序遍历：遍历顺序规则为【根左右】 中序遍历：遍历顺序规则为【左根右】 后序遍历：遍历顺序规则为【左右根】  什么是【根左右】？就是先遍历根，再遍历左孩子，最后遍历右孩子； 举个例子，看下图（图从网上找的）  先序遍历：ABCDEFGHK 中序遍历：BDCAEHGKF   后序遍历：DCBHKGFEA  ####以中序遍历为例:    中序遍历的规则是【左根右">
+  <meta name="description" content="二叉树的遍历分为以下三种： 先序遍历：遍历顺序规则为【根左右】 中序遍历：遍历顺序规则为【左根右】 后序遍历：遍历顺序规则为【左右根】  什么是【根左右】？就是先遍历根，再遍历左孩子，最后遍历右孩子； 举个例子，看下图（图从网上找的）  先序遍历：ABCDEFGHK 中序遍历：BDCAEHGKF 后序遍历：DCBHKGFEA  以中序遍历为例:中序遍历的规则是【左根右】，我们从root节点A看起；">
 <meta property="og:type" content="article">
 <meta property="og:title" content="二叉树遍历">
 <meta property="og:url" content="https://xingkonghai.github.io/2018/03/18/二叉树遍历/index.html">
 <meta property="og:site_name" content="百炼成钢">
-<meta property="og:description" content="####二叉树的遍历分为以下三种：  先序遍历：遍历顺序规则为【根左右】 中序遍历：遍历顺序规则为【左根右】 后序遍历：遍历顺序规则为【左右根】  什么是【根左右】？就是先遍历根，再遍历左孩子，最后遍历右孩子； 举个例子，看下图（图从网上找的）  先序遍历：ABCDEFGHK 中序遍历：BDCAEHGKF   后序遍历：DCBHKGFEA  ####以中序遍历为例:    中序遍历的规则是【左根右">
+<meta property="og:description" content="二叉树的遍历分为以下三种： 先序遍历：遍历顺序规则为【根左右】 中序遍历：遍历顺序规则为【左根右】 后序遍历：遍历顺序规则为【左右根】  什么是【根左右】？就是先遍历根，再遍历左孩子，最后遍历右孩子； 举个例子，看下图（图从网上找的）  先序遍历：ABCDEFGHK 中序遍历：BDCAEHGKF 后序遍历：DCBHKGFEA  以中序遍历为例:中序遍历的规则是【左根右】，我们从root节点A看起；">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://xingkonghai.github.io/2018/03/18/二叉树遍历/bianli.jpeg">
-<meta property="og:updated_time" content="2018-03-18T01:18:01.951Z">
+<meta property="og:updated_time" content="2018-03-18T01:29:20.101Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="二叉树遍历">
-<meta name="twitter:description" content="####二叉树的遍历分为以下三种：  先序遍历：遍历顺序规则为【根左右】 中序遍历：遍历顺序规则为【左根右】 后序遍历：遍历顺序规则为【左右根】  什么是【根左右】？就是先遍历根，再遍历左孩子，最后遍历右孩子； 举个例子，看下图（图从网上找的）  先序遍历：ABCDEFGHK 中序遍历：BDCAEHGKF   后序遍历：DCBHKGFEA  ####以中序遍历为例:    中序遍历的规则是【左根右">
+<meta name="twitter:description" content="二叉树的遍历分为以下三种： 先序遍历：遍历顺序规则为【根左右】 中序遍历：遍历顺序规则为【左根右】 后序遍历：遍历顺序规则为【左右根】  什么是【根左右】？就是先遍历根，再遍历左孩子，最后遍历右孩子； 举个例子，看下图（图从网上找的）  先序遍历：ABCDEFGHK 中序遍历：BDCAEHGKF 后序遍历：DCBHKGFEA  以中序遍历为例:中序遍历的规则是【左根右】，我们从root节点A看起；">
 <meta name="twitter:image" content="https://xingkonghai.github.io/2018/03/18/二叉树遍历/bianli.jpeg">
 
 
@@ -392,23 +392,38 @@
       
 
       
-        <p>####二叉树的遍历分为以下三种：</p>
-<ol>
+        <h4 id="二叉树的遍历分为以下三种："><a href="#二叉树的遍历分为以下三种：" class="headerlink" title="二叉树的遍历分为以下三种："></a>二叉树的遍历分为以下三种：</h4><ol>
 <li>先序遍历：遍历顺序规则为【根左右】</li>
 <li>中序遍历：遍历顺序规则为【左根右】</li>
 <li>后序遍历：遍历顺序规则为【左右根】</li>
 </ol>
 <p>什么是【根左右】？就是先遍历根，再遍历左孩子，最后遍历右孩子；</p>
 <p>举个例子，看下图（图从网上找的）<br><img src="/2018/03/18/二叉树遍历/bianli.jpeg" alt="遍历图"></p>
-<blockquote>
-<p>先序遍历：ABCDEFGHK</p>
-<p>中序遍历：BDCAEHGKF</p>
-</blockquote>
-<blockquote>
-<p>后序遍历：DCBHKGFEA</p>
-</blockquote>
-<p>####以中序遍历为例:<br>    中序遍历的规则是【左根右】，我们从root节点A看起；<br>    此时A是根节点，遍历A的左子树；<br>    A的左子树存在，找到B，此时B看做根节点，遍历B的左子树；<br>    B的左子树不存在，返回B，根据【左根右】的遍历规则，记录B，遍历B的右子树；<br>    B的右子树存在，找到C，此时C看做根节点，遍历C的左子树；<br>    C的左子树存在，找到D，由于D是叶子节点，无左子树，记录D，无右子树，返回C，根据【左根右】的遍历规则，记录C，遍历C的右子树；<br>    C的右子树不存在，返回B，B的右子树遍历完，返回A；<br>    至此，A的左子树遍历完毕，根据【左根右】的遍历规则，记录A，遍历A的右子树；<br>    A的右子树存在，找到E，此时E看做根节点，遍历E的左子树；<br>    E的左子树不存在，返回E，根据【左根右】的遍历规则，记录E，遍历E的右子树；<br>    E的右子树存在，找到F，此时F看做根节点，遍历F的左子树；<br>    F的左子树存在，找到G，此时G看做根节点，遍历G的左子树；<br>    G的左子树存在，找到H，由于H是叶子节点，无左子树，记录H，无右子树，返回G，根据【左根右】的遍历规则，记录G，遍历G的右子树；<br>    G的右子树存在，找到K，由于K是叶子节点，无左子树，记录K，无右子树，返回G，根据【左根右】的遍历规则，记录F，遍历F的右子树；<br>    F的右子树不存在，返回F，E的右子树遍历完毕，返回A；<br>    至此，A的右子树也遍历完毕；</p>
-<p>最终我们得到上图的中序遍历为BDCAEHGKF，无非是按照遍历规则来的；<br>根据“中序遍历”的分析，相信先序遍历和后序遍历也可以轻松写出~</p>
+<ul>
+<li>先序遍历：ABCDEFGHK</li>
+<li>中序遍历：BDCAEHGKF</li>
+<li>后序遍历：DCBHKGFEA</li>
+</ul>
+<h4 id="以中序遍历为例"><a href="#以中序遍历为例" class="headerlink" title="以中序遍历为例:"></a>以中序遍历为例:</h4><pre><code>中序遍历的规则是【左根右】，我们从root节点A看起；
+此时A是根节点，遍历A的左子树；
+A的左子树存在，找到B，此时B看做根节点，遍历B的左子树；
+B的左子树不存在，返回B，根据【左根右】的遍历规则，记录B，遍历B的右子树；
+B的右子树存在，找到C，此时C看做根节点，遍历C的左子树；
+C的左子树存在，找到D，由于D是叶子节点，无左子树，记录D，无右子树，返回C，根据【左根右】的遍历规则，记录C，遍历C的右子树；
+C的右子树不存在，返回B，B的右子树遍历完，返回A；
+至此，A的左子树遍历完毕，根据【左根右】的遍历规则，记录A，遍历A的右子树；
+A的右子树存在，找到E，此时E看做根节点，遍历E的左子树；
+E的左子树不存在，返回E，根据【左根右】的遍历规则，记录E，遍历E的右子树；
+E的右子树存在，找到F，此时F看做根节点，遍历F的左子树；
+F的左子树存在，找到G，此时G看做根节点，遍历G的左子树；
+G的左子树存在，找到H，由于H是叶子节点，无左子树，记录H，无右子树，返回G，根据【左根右】的遍历规则，记录G，遍历G的右子树；
+G的右子树存在，找到K，由于K是叶子节点，无左子树，记录K，无右子树，返回G，根据【左根右】的遍历规则，记录F，遍历F的右子树；
+F的右子树不存在，返回F，E的右子树遍历完毕，返回A；
+至此，A的右子树也遍历完毕；
+</code></pre><p>最终我们得到上图的中序遍历为BDCAEHGKF，无非是按照遍历规则来的；<br>根据“中序遍历”的分析，相信先序遍历和后序遍历也可以轻松写出</p>
+<ul>
+<li>参考<br>  <a href="http://blog.csdn.net/soundwave_/article/details/53120766" target="_blank" rel="noopener">http://blog.csdn.net/soundwave_/article/details/53120766</a></li>
+</ul>
 
       
     </div>
@@ -498,8 +513,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -548,6 +572,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#二叉树的遍历分为以下三种："><span class="nav-number">1.</span> <span class="nav-text">二叉树的遍历分为以下三种：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#以中序遍历为例"><span class="nav-number">2.</span> <span class="nav-text">以中序遍历为例:</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
