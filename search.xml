@@ -3,7 +3,10 @@
   <entry>
     <title><![CDATA[react-native]]></title>
     <url>%2F2018%2F09%2F25%2Freact-native%2F</url>
-    <content type="text"></content>
+    <content type="text"><![CDATA[win10启动报错 不能用最新的版本 初始化命令应该是 react-native init ProjectName –version=0.55.4 夜神模拟器 adb connect 127.0.0.1:62001 逍遥模拟器 adb connect 127.0.0.1:21503 adb devices 检查是否连接成功]]></content>
+      <tags>
+        <tag>全栈</tag>
+      </tags>
   </entry>
   <entry>
     <title><![CDATA[HashMap的工作原理]]></title>
