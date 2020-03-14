@@ -99,18 +99,18 @@
 
 
 
-  <meta name="description" content="redis 模型">
+  <meta name="description" content="redis 基本知识 为什么有 redis   起初数据是存放在硬盘单一文件里的。  硬盘的两个指标  1. 带宽（也是吞吐，一般为百兆/秒） 2 .寻址时间(毫秒)   然而内存的寻址时间一般为纳秒级别   当文件越来越大时，查询会越来越慢，因为它要全量扫描（全量 io），根据硬件的约束，只会越来越慢   数据库  datapage   4k,  数据分治，创建索引  避免全量扫描，但是如果不对">
 <meta name="keywords" content="学习,redis">
 <meta property="og:type" content="article">
 <meta property="og:title" content="redis笔记">
 <meta property="og:url" content="https://markchao.github.io/2020/03/14/redis笔记/index.html">
 <meta property="og:site_name" content="水滴石穿">
-<meta property="og:description" content="redis 模型">
+<meta property="og:description" content="redis 基本知识 为什么有 redis   起初数据是存放在硬盘单一文件里的。  硬盘的两个指标  1. 带宽（也是吞吐，一般为百兆/秒） 2 .寻址时间(毫秒)   然而内存的寻址时间一般为纳秒级别   当文件越来越大时，查询会越来越慢，因为它要全量扫描（全量 io），根据硬件的约束，只会越来越慢   数据库  datapage   4k,  数据分治，创建索引  避免全量扫描，但是如果不对">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2020-03-14T01:34:08.476Z">
+<meta property="og:updated_time" content="2020-03-14T02:46:06.768Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="redis笔记">
-<meta name="twitter:description" content="redis 模型">
+<meta name="twitter:description" content="redis 基本知识 为什么有 redis   起初数据是存放在硬盘单一文件里的。  硬盘的两个指标  1. 带宽（也是吞吐，一般为百兆/秒） 2 .寻址时间(毫秒)   然而内存的寻址时间一般为纳秒级别   当文件越来越大时，查询会越来越慢，因为它要全量扫描（全量 io），根据硬件的约束，只会越来越慢   数据库  datapage   4k,  数据分治，创建索引  避免全量扫描，但是如果不对">
 
 
 
@@ -391,7 +391,45 @@
       
 
       
-        <h3 id="redis-模型"><a href="#redis-模型" class="headerlink" title="redis 模型"></a>redis 模型</h3>
+        <h1 id="redis-基本知识"><a href="#redis-基本知识" class="headerlink" title="redis 基本知识"></a>redis 基本知识</h1><ol>
+<li><p>为什么有 redis </p>
+<ul>
+<li><p>起初数据是存放在硬盘单一文件里的。</p>
+<ul>
+<li><p>硬盘的两个指标  1. 带宽（也是吞吐，一般为百兆/秒） 2 .寻址时间(毫秒) </p>
+</li>
+<li><p>然而内存的寻址时间一般为纳秒级别 </p>
+</li>
+<li>当文件越来越大时，查询会越来越慢，因为它要全量扫描（全量 io），根据硬件的约束，只会越来越慢</li>
+</ul>
+</li>
+<li><p>数据库  datapage   4k,  数据分治，创建索引  避免全量扫描，但是如果不对索引处理，还会是全量扫描索，这时候就在内存中增加了对索引（B+树/B 树）的数据结构，树干再内存里，叶子是索引数据，从而避免索引数据的全量 io</p>
+<ul>
+<li>当表很大，增删改查一定会变慢吗？ 写会涉及到索引的变动，会变慢，但是读就不一定了，如果是只有一个链接，并且只是个简单的查询，并且 where 条件命中索引，那么它还是毫秒级的，不会慢，但当并发很大时，就算是索引命中，由于硬盘的带宽限制，它也会变得很慢</li>
+</ul>
+</li>
+<li><p>所以有了 内存型的  关系型数据库 HANA  (SAP 公司)，就数据全部放到内存，但是很贵，</p>
+<ul>
+<li>硬盘里的3T 数据 全部放到内存中，会比3T大还是小呢？  答：会比3T小很多，因为内存存放数据，会有常量池，一些数量只需要保存一份就可以，其他用指针指向 ，数据可复用</li>
+</ul>
+</li>
+<li><p>把全部数据放在硬盘或者内存里是两个极端，放在硬盘里肯定会有慢的风险，放在内存里有太贵，所有就有了折中的办法：只把热点数据放到内存里，所以就有了与之相对应的技术（redis/memcache 等）</p>
+</li>
+</ul>
+</li>
+<li><p>Redis 为什么是 key value</p>
+<ul>
+<li>关系型的数据库 会有约束，或者说是范式，为了防止冗余，如果 redis也设计成关系型的话，因为redis本身不会有太多的内存，有内存淘汰机制，当数据库不全的时候，就会出现问题，数据准不准，还要不要去数据库，所以没有更好的办法，还是保持 key value 不动，只关注数据自身</li>
+</ul>
+</li>
+<li><p>redis 是单线程还是多线程</p>
+<ul>
+<li>worker 是单线程</li>
+<li>从6.x版本开始，redis 开始了 io threads （io多线程，但是 worker 单线程）</li>
+</ul>
+</li>
+</ol>
+
       
     </div>
 
@@ -576,7 +614,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#redis-模型"><span class="nav-number">1.</span> <span class="nav-text">redis 模型</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#redis-基本知识"><span class="nav-number">1.</span> <span class="nav-text">redis 基本知识</span></a></li></ol></div>
             
 
           </div>

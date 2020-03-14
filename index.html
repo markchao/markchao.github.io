@@ -391,8 +391,17 @@
       
         
           
-          redis 模型
-          
+          redis 基本知识
+为什么有 redis 
+
+起初数据是存放在硬盘单一文件里的。
+
+硬盘的两个指标  1. 带宽（也是吞吐，一般为百兆/秒） 2 .寻址时间(毫秒) 
+
+然而内存的寻址时间一般为纳秒级别 
+
+当文件越来越大时，查询会越来越慢，因为它要全量扫描（全量 io），根据硬件的约束，只会越来
+          ...
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2020/03/14/redis笔记/#more" rel="contents">
