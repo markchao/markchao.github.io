@@ -108,7 +108,7 @@
 <meta property="og:description" content="redis 基本知识 为什么有 redis   起初数据是存放在硬盘单一文件里的。  硬盘的两个指标  1. 带宽（也是吞吐，一般为百兆/秒） 2 .寻址时间(毫秒)   然而内存的寻址时间一般为纳秒级别   当文件越来越大时，查询会越来越慢，因为它要全量扫描（全量 io），根据硬件的约束，只会越来越慢   数据库  datapage   4k,  数据分治，创建索引  避免全量扫描，但是如果不对">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://markchao.github.io/2020/03/14/redis笔记/redis-2.png">
-<meta property="og:updated_time" content="2020-03-14T03:05:11.149Z">
+<meta property="og:updated_time" content="2020-03-14T03:45:33.717Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="redis笔记">
 <meta name="twitter:description" content="redis 基本知识 为什么有 redis   起初数据是存放在硬盘单一文件里的。  硬盘的两个指标  1. 带宽（也是吞吐，一般为百兆/秒） 2 .寻址时间(毫秒)   然而内存的寻址时间一般为纳秒级别   当文件越来越大时，查询会越来越慢，因为它要全量扫描（全量 io），根据硬件的约束，只会越来越慢   数据库  datapage   4k,  数据分治，创建索引  避免全量扫描，但是如果不对">
@@ -419,26 +419,38 @@
 </li>
 </ul>
 </li>
-<li><p>Redis 为什么是 key value</p>
-<ul>
+<li>Redis 为什么是 key value<ul>
 <li>关系型的数据库 会有约束，或者说是范式，为了防止冗余，如果 redis也设计成关系型的话，因为redis本身不会有太多的内存，有内存淘汰机制，当数据库不全的时候，就会出现问题，数据准不准，还要不要去数据库，所以没有更好的办法，还是保持 key value 不动，只关注数据自身</li>
 </ul>
 </li>
-<li><p>redis 是单线程还是多线程</p>
-<ul>
+<li>redis 是单线程还是多线程<ul>
 <li>worker 是单线程</li>
 <li>从6.x版本开始，redis 开始了 io threads （io多线程，但是 worker 单线程）</li>
 </ul>
 </li>
-<li><p>redis value有类型（string,hash,list, set ,zset)，且每种类型有自己的本地方法</p>
-<ul>
+<li>redis value有类型（string,hash,list, set ,zset)，且每种类型有自己的本地方法<ul>
 <li>memcache 数据向计算移动</li>
 <li>redis 计算向数据移动</li>
-<li></li>
 </ul>
 </li>
+<li>使用 redis 时应注意：<ul>
+<li>redsi 可以启动多个，每个 redis 不要存放太多的数据（几G级别），风险分担，恢复也会很快</li>
+</ul>
+</li>
+<li>redis 的 io 性能来自于哪里？<ol>
+<li>内核 NIO/EPOLL</li>
 </ol>
-<h3 id="周老师课堂笔记"><a href="#周老师课堂笔记" class="headerlink" title="周老师课堂笔记"></a>周老师课堂笔记</h3><p><img src="/2020/03/14/redis笔记/redis-2.png" alt="周老师笔记图"></p>
+</li>
+</ol>
+<h4 id="工具"><a href="#工具" class="headerlink" title="工具"></a>工具</h4><p>Strace 追踪命令 </p>
+<ul>
+<li>命令：strace  -ff  -o  ~/xx/out  ./redis-server<ul>
+<li>-ff 是监控所有的 包括线程   -o 是输出文件   xx 是文件存放的目录  out 是文件的前缀  ./redis-server 要追踪的命令</li>
+</ul>
+</li>
+</ul>
+<h3 id="周老师课堂笔记"><a href="#周老师课堂笔记" class="headerlink" title="周老师课堂笔记"></a>周老师课堂笔记</h3><p><a href="https://ke.qq.com/user/index/index.html#/plan/cid=480335&amp;tid=101338988&amp;term_id=101338988" target="_blank" rel="noopener">课程链接</a></p>
+<p><img src="/2020/03/14/redis笔记/redis-2.png" alt="周老师笔记图"></p>
 
       
     </div>
@@ -624,7 +636,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#redis-基本知识"><span class="nav-number">1.</span> <span class="nav-text">redis 基本知识</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#周老师课堂笔记"><span class="nav-number">1.0.1.</span> <span class="nav-text">周老师课堂笔记</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#redis-基本知识"><span class="nav-number">1.</span> <span class="nav-text">redis 基本知识</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#工具"><span class="nav-number">1.0.0.1.</span> <span class="nav-text">工具</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#周老师课堂笔记"><span class="nav-number">1.0.1.</span> <span class="nav-text">周老师课堂笔记</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>
