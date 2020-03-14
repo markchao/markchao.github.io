@@ -108,7 +108,7 @@
 <meta property="og:description" content="redis 基本知识 为什么有 redis   起初数据是存放在硬盘单一文件里的。  硬盘的两个指标  1. 带宽（也是吞吐，一般为百兆/秒） 2 .寻址时间(毫秒)   然而内存的寻址时间一般为纳秒级别   当文件越来越大时，查询会越来越慢，因为它要全量扫描（全量 io），根据硬件的约束，只会越来越慢   数据库  datapage   4k,  数据分治，创建索引  避免全量扫描，但是如果不对">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://markchao.github.io/2020/03/14/redis笔记/redis-2.png">
-<meta property="og:updated_time" content="2020-03-14T03:45:33.717Z">
+<meta property="og:updated_time" content="2020-03-14T05:02:18.672Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="redis笔记">
 <meta name="twitter:description" content="redis 基本知识 为什么有 redis   起初数据是存放在硬盘单一文件里的。  硬盘的两个指标  1. 带宽（也是吞吐，一般为百兆/秒） 2 .寻址时间(毫秒)   然而内存的寻址时间一般为纳秒级别   当文件越来越大时，查询会越来越慢，因为它要全量扫描（全量 io），根据硬件的约束，只会越来越慢   数据库  datapage   4k,  数据分治，创建索引  避免全量扫描，但是如果不对">
@@ -419,27 +419,44 @@
 </li>
 </ul>
 </li>
-<li>Redis 为什么是 key value<ul>
+<li><p>Redis 为什么是 key value</p>
+</li>
+</ol>
+<ul>
 <li>关系型的数据库 会有约束，或者说是范式，为了防止冗余，如果 redis也设计成关系型的话，因为redis本身不会有太多的内存，有内存淘汰机制，当数据库不全的时候，就会出现问题，数据准不准，还要不要去数据库，所以没有更好的办法，还是保持 key value 不动，只关注数据自身</li>
 </ul>
-</li>
-<li>redis 是单线程还是多线程<ul>
+<ol>
+<li><p>redis 是单线程还是多线程</p>
+<ul>
 <li>worker 是单线程</li>
 <li>从6.x版本开始，redis 开始了 io threads （io多线程，但是 worker 单线程）</li>
 </ul>
 </li>
-<li>redis value有类型（string,hash,list, set ,zset)，且每种类型有自己的本地方法<ul>
+<li><p>redis value有类型（string,hash,list, set ,zset)，且每种类型有自己的本地方法</p>
+<ul>
 <li>memcache 数据向计算移动</li>
 <li>redis 计算向数据移动</li>
 </ul>
 </li>
-<li>使用 redis 时应注意：<ul>
+<li><p>使用 redis 时应注意：</p>
+<ul>
 <li>redsi 可以启动多个，每个 redis 不要存放太多的数据（几G级别），风险分担，恢复也会很快</li>
 </ul>
 </li>
-<li>redis 的 io 性能来自于哪里？<ol>
-<li>内核 NIO/EPOLL</li>
+<li><p>redis 的 io 性能来自于哪里？</p>
+<ol>
+<li><p>内核 NIO/EPOLL</p>
+<ol>
+<li><p>nio 是调用内核的 select（），有多少文件描述符就要传递多少，且每次都要传，内核就要遍历多少</p>
+</li>
+<li><p>epoll  首先epoll_create 在内存中开辟一个存放文件描述符空间并返回该空间的文件描述符</p>
+<p>epoll_ctl 将要监控的文件描述符放到 开辟的内存空间中，每个描述符只需要调用一次</p>
+<p>当有客户端链接 或者 发送数据时，内核会通过事件回调，将对应的文件描述符存放到一个内存空间中，等待用户 epoll_wait时返回 对应的文件描述符，然后用户再调用 read 方法读取数据</p>
+</li>
 </ol>
+</li>
+</ol>
+<p>​     注意 所有的操作都是同步操作 </p>
 </li>
 </ol>
 <h4 id="工具"><a href="#工具" class="headerlink" title="工具"></a>工具</h4><p>Strace 追踪命令 </p>
