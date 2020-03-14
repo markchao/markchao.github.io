@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[redis笔记]]></title>
+    <url>%2F2020%2F03%2F14%2Fredis%E7%AC%94%E8%AE%B0%2F</url>
+    <content type="text"><![CDATA[redis 模型]]></content>
+      <tags>
+        <tag>学习/redis</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[react-native 使用]]></title>
     <url>%2F2018%2F09%2F25%2Freact-native%2F</url>
     <content type="text"><![CDATA[##win10启动报错 不能用最新的版本 初始化命令应该是 react-native init ProjectName –version=0.55.4 夜神模拟器 adb connect 127.0.0.1:62001 逍遥模拟器 adb connect 127.0.0.1:21503 adb devices 检查是否连接成功 ##ios http图片不显示（http不能正常使用的解决方法） 在Info.plist中添加NSAppTransportSecurity(App Transport Security Settings)类型Dictionary。 在NSAppTransportSecurity(App Transport Security Settings)下添加NSAllowsArbitraryLoads(Allow Arbitrary Loads)类型Boolean,值设为YES。 重新执行 react-native run-ios ##报错（RootComponent.prototype）是因为App.js中的 export class App extends Component&lt;Props&gt;缺少了关键字default即修改成export default class App extends Component&lt;Props&gt;即可 ##npm设置淘宝镜像 1.得到原本的镜像地址 npm get registry > https://registry.npmjs.org/ 设成淘宝的 npm config set registry http://registry.npm.taobao.org/ yarn config set registry http://registry.npm.taobao.org/ 2.换成原来的 npm config set registry https://registry.npmjs.org/ ##使用native-base框架1.安装native-basenpm install native-base --savereact-native link //很重要 2.native-base自定义使用 node node_modules/native-base/ejectTheme.js运行上述命令时，名为native-base-theme的文件夹将复制到项目根目录。目录中有两个名为components和的文件夹variables。将下载的variables.js 复制到variables文件夹中使用示例 123456789101112131415161718192021222324import &#123; AppRegistry &#125; from &apos;react-native&apos;;import React, &#123; Component &#125; from &apos;react&apos;;import &#123; Container, Content, Text, StyleProvider &#125; from &apos;native-base&apos;;import getTheme from &apos;./native-base-theme/components&apos;;import material from &apos;./native-base-theme/variables/variables&apos;;import AppHeader from &apos;./src/components/appHeader&apos;;import AppFooter from &apos;./src/components/appFooter&apos;;import AppBody from &apos;./src/components/appBody&apos;;import App from &apos;./App&apos;;export default class MyProject extends Component &#123; render() &#123; return ( &lt;StyleProvider style=&#123;getTheme(material)&#125;&gt; &lt;Container&gt; &lt;AppHeader/&gt; &lt;AppBody/&gt; &lt;AppFooter/&gt; &lt;/Container&gt; &lt;/StyleProvider&gt; ); &#125;&#125;AppRegistry.registerComponent(&apos;Test2&apos;, () =&gt; MyProject); // Test2为项目名 一定注意 否则报错]]></content>
