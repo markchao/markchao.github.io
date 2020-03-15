@@ -108,7 +108,7 @@
 <meta property="og:description" content="redis 学习 为什么有 redis   起初数据是存放在硬盘单一文件里的。  硬盘的两个指标  1. 带宽（也是吞吐，一般为百兆/秒） 2 .寻址时间(毫秒)   然而内存的寻址时间一般为纳秒级别   当文件越来越大时，查询会越来越慢，因为它要全量扫描（全量 io），根据硬件的约束，只会越来越慢   数据库  datapage   4k,  数据分治，创建索引  避免全量扫描，但是如果不对索引">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://markchao.github.io/2020/03/14/redis笔记/redis-2.png">
-<meta property="og:updated_time" content="2020-03-14T05:03:03.431Z">
+<meta property="og:updated_time" content="2020-03-15T09:45:22.679Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="redis笔记">
 <meta name="twitter:description" content="redis 学习 为什么有 redis   起初数据是存放在硬盘单一文件里的。  硬盘的两个指标  1. 带宽（也是吞吐，一般为百兆/秒） 2 .寻址时间(毫秒)   然而内存的寻址时间一般为纳秒级别   当文件越来越大时，查询会越来越慢，因为它要全量扫描（全量 io），根据硬件的约束，只会越来越慢   数据库  datapage   4k,  数据分治，创建索引  避免全量扫描，但是如果不对索引">
@@ -456,7 +456,57 @@
 </ol>
 </li>
 </ol>
-<p>​     注意 所有的操作都是同步操作 </p>
+<p>​     注意 所有的操作都是同步操作</p>
+<ol>
+<li>6.x 以后的版本 io threads，更能充分利用 cup，性能更高</li>
+</ol>
+</li>
+<li><p>redis 的五大类型</p>
+<ol>
+<li><p>string:</p>
+<ul>
+<li>字符串</li>
+<li>数值计算  秒杀 限流 关于值的变化</li>
+<li>二进制  setbit  k1 7 1   会开辟一个字节（8位）  setbit k1 9 1  ,此时是两个字节  bitCount  k1 0  1 表示0个字节到1个字节里面一共几个1（注意是字节的索引）；bitop   and  andkey  k1  k2 ：按位 与 结果存在 andkey ，场景：1.统计用户任意时间 窗口内 的登录天数  2 统计 单位时间窗口内 活跃用户的数量<ul>
+<li>查询各种语言二进制操作的场景 大部分是互通的 在 redis 或JAVA 中都可以用</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>List:</p>
+<ul>
+<li><p>底层是基于双向链表来实现的</p>
+</li>
+<li><p>可以模拟 </p>
+<p>栈（同向指令）  </p>
+<p>队列（异向指令） </p>
+<p>数组（LINDEX k1 2    通过下标获取对应的值）</p>
+</li>
+<li><p>注意:LTRIM 命令是留住索引范围内的数据，删除索引范围外的数据（场景：帖子 评论 保留固定长度的热数据）</p>
+</li>
+</ul>
+</li>
+<li><p>hash</p>
+<ul>
+<li>场景 用户信息  详情页  聚合结果</li>
+</ul>
+</li>
+<li><p>set</p>
+<ul>
+<li>集合特征： 无序 去重</li>
+<li>Srandmember k1 3   后面的3是返回的随机元素的个数，如果是正数，则是去重的，最多全部返回，例如 k1中一共有6个元素， 在调用 srandmember k1 8 时，超过了6了 这时候则返回全部的数据，也就是6个，而不是8个，当数值为负数时，则返回随机的 不去重的对应数量的元素（应用场景  抽奖 摇号等）</li>
+<li>Sunion k1 k2 取并集   sinter k1 k2 取交集   sdiff k1 k2 求差集    （场景：推荐系统  例如 好友差集：推荐可能认识的人   交集：共同好友  并集：大家的好友圈）</li>
+</ul>
+</li>
+<li><p>zset</p>
+<ul>
+<li>有序（动态排序），去重</li>
+<li>注意如果 score 是相同的 那么就按照名称字典序</li>
+<li>场景（排行榜 （默认是从小到大 所以要用 rev 指令） 动态分页 ）</li>
+<li>排序是怎么实现的：跳表 skip list</li>
+</ul>
+</li>
+</ol>
 </li>
 </ol>
 <h4 id="工具"><a href="#工具" class="headerlink" title="工具"></a>工具</h4><p>Strace 追踪命令 </p>
